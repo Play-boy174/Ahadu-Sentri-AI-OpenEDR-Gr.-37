@@ -12,12 +12,22 @@ app = FastAPI(title="Ahadu SentriAI - Threat Detection API",
 # Load the trained model and scaler
 model = joblib.load("trained_model.ipynb")
 
-app = FastAPI()
-
-
-
+def convert_to_dataframe(incoming_data):
+    """
+    Convert incoming data to pandas DataFrame
+    """
+    if isinstance(incoming_data, dict):
+        df = pd.DataFrame([incoming_data])
+        return df
+    elif isinstance(incoming_data, list):
+        df = pd.DataFrame(incoming_data)
+        return df
+    else:
+        raise ValueError("Data must be a dictionary or list of dictionaries")
 
 # Define the input data model with all features
+
+
 
 
 
